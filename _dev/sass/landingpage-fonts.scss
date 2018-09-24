@@ -1,0 +1,100 @@
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+0.0 Setup
+1.0 Typography
+2.0 Font Awesome Icons
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+0.0 Setup
+--------------------------------------------------------------*/
+
+$fonts-path: "../fonts";
+
+/*--------------------------------------------------------------
+1.0 Typography
+--------------------------------------------------------------*/
+
+@font-face {
+  font-family: 'Walbaum 120XL Medium Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Walbaum 120XL Medium Pro'),
+       url('#{$fonts-path}/walbaum/Walbaum120XLMediumPro.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Walbaum 120XL Medium Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Walbaum 120XL Medium Pro'),
+       url('#{$fonts-path}/walbaum/Walbaum120XLMediumProItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Walbaum 120XL Medium Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Walbaum 120XL Medium Pro'),
+       url('#{$fonts-path}/walbaum/Walbaum120XLMediumProBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Walbaum 120XL Medium Pro';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Walbaum 120XL Medium Pro'),
+       url('#{$fonts-path}/walbaum/Walbaum120XLMediumProBoldItalic.woff') format('woff');
+}
+
+
+/* open-sans-regular - latin-ext_latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-italic - latin-ext_latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-700 - latin-ext_latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* open-sans-700italic - latin-ext_latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('#{$fonts-path}/google/open-sans/open-sans-v15-latin-ext_latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/*--------------------------------------------------------------
+2.0 Font Awesome Icons
+--------------------------------------------------------------*/
+
+// Variables
+// --------------------------
+$fa-font-path: "#{$fonts-path}/font-awesome";
+
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
