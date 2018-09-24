@@ -20,7 +20,7 @@ const theme_name   = 'landingpage',
 
 const base_path  = '',
       src        = base_path + '_dev',
-      dist       = base_path + '_dist',
+      dist       = base_path + 'docs',
       paths      = {
         vendor_js:   [
           'node_modules/jquery/dist/jquery.min.js',
