@@ -2,6 +2,7 @@
 /*
 !.gitignore
 !_dev/
+!docs/
 
 !gulpfile.js
 !package.json
