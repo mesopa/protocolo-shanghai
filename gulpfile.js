@@ -26,13 +26,15 @@ const base_path  = '',
           'node_modules/jquery/dist/jquery.min.js',
           'node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
           'node_modules/plyr/dist/plyr.min.js',
+          'node_modules/sal.js/dist/sal.js',
         ],
         vendor_css:  [
           'node_modules/normalize.css/normalize.css',
           'node_modules/milligram/dist/milligram.min.css',
 
           'node_modules/magnific-popup/dist/magnific-popup.css',
-          'node_modules/plyr/dist/plyr.css'
+          'node_modules/plyr/dist/plyr.css',
+          'node_modules/sal.js/dist/sal.css',
         ],
         js:   [
           src + '/js/'   + theme_name + theme_suffix + '.js'

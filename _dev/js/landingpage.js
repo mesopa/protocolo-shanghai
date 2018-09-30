@@ -26,4 +26,7 @@ $(document).ready ( function(){
       $.magnificPopup.close();
     });
   }
+
+  // Sal
+  sal();
 });

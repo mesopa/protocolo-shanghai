@@ -278,7 +278,7 @@ p {
 .exhibition {
   &.location {
     &.wrap {
-      background-image: url('../images/protocolo-booth-shanghai-expo-2010.jpg');
+      background-image: url('../images/protocolo-booth-shanghai-expo-china-2018.jpg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -302,6 +302,26 @@ p {
         }
       }
     }
+  }
+}
+
+.lightbox {
+  &.placeholder {
+    position: relative;
+
+    img {
+      height: auto;
+    }
+  }
+}
+
+.lightbox {
+  &.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
 }
 
