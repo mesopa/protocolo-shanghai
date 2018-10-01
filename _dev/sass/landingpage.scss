@@ -283,6 +283,18 @@ p {
       background-repeat: no-repeat;
       background-size: cover;
       min-height: 60rem;
+      position: relative;
+    }
+  }
+}
+
+.vr {
+  &.experience {
+    &.link {
+      position: absolute;
+      left: 50%;
+      bottom: 1.6rem;
+      transform: translateX(-50%);
     }
   }
 }

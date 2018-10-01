@@ -141,8 +141,18 @@ gulp.task('sass-fonts', () => {
 gulp.task('vendor-js', () => {
   return gulp.src( paths.vendor_js )
     .pipe( concat( theme_name + theme_suffix + '-vendor' + '.js' ) )
-    .pipe(uglify())
+    .pipe( uglify())
     .pipe( gulp.dest( dist + '/assets/js' ) );
+});
+
+// -- Vendor JS AFrame
+gulp.task('vendor-aframe-js', () => {
+  return gulp.src([
+    'node_modules/aframe/dist/aframe-master.js'
+  ])
+   .pipe( concat( theme_name + theme_suffix + '-vendor-aframe' + '.js'))
+   .pipe( uglify())
+   .pipe( gulp.dest( dist + '/assets/js'));
 });
 
 // -- Vendor CSS   --
@@ -178,6 +188,7 @@ gulp.task(
       'sass',
       'sass-fonts',
       'vendor-js',
+      'vendor-aframe-js',
       'vendor-css',
       'connect',
       'watch'
