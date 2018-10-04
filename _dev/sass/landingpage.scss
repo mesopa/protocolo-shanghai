@@ -84,6 +84,12 @@ $primary-color-white: (#ffffff);
   @media (min-width: 80.0rem) {
     font-size: 4.6rem;
   }
+
+  small {
+    display: block;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+  }
 }
 
 .h5 {
@@ -95,13 +101,32 @@ $primary-color-white: (#ffffff);
 }
 
 p {
-  color: darken($primary-color-white, 20%);
+  color: darken($primary-color-white, 30%);
 }
 
 
 /*--------------------------------------------------------------
 3.0 Layout
 --------------------------------------------------------------*/
+
+a {
+  color: #e0af75;
+
+  &:focus,
+  &:hover {
+    color: lighten( #e0af75, 10% );
+  }
+}
+
+.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background-color: #e0af75;
+  border: 1px solid #e0af75;
+  color: $primary-color-black;
+}
 
 .dark {
   &.background {
@@ -288,6 +313,18 @@ p {
   }
 }
 
+.flex {
+  &.align {
+    &.items {
+      &.center {
+        display: flex;
+        align-items: center;
+        text-align: left;
+      }
+    }
+  }
+}
+
 .vr {
   &.experience {
     &.link {
@@ -334,6 +371,18 @@ p {
     left: 0;
     height: 100%;
     width: 100%;
+  }
+}
+
+.image {
+  &.placeholder {
+    border: 0.5rem solid #e0af75;
+    margin-bottom: 3.0rem;
+
+    img {
+      height: auto;
+      vertical-align: bottom;
+    }
   }
 }
 
