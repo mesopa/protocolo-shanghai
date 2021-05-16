@@ -3,9 +3,9 @@
 // Project Variables
 // -----------------
 
-const gulp         = require('gulp'),
-      sass         = require('gulp-sass'),
-      prefixer     = require('gulp-autoprefixer'),
+const { src, dest, series, parallel, watch } = require('gulp');
+
+const sass         = require('gulp-sass'),
       minifyCSS    = require('gulp-clean-css'),
       rename       = require('gulp-rename'),
       concat       = require('gulp-concat'),
@@ -19,7 +19,7 @@ const theme_name   = 'landingpage',
       theme_suffix = '';
 
 const base_path  = '',
-      src        = base_path + '_dev',
+      source     = base_path + '_dev',
       dist       = base_path + 'docs',
       paths      = {
         vendor_js:   [
@@ -37,13 +37,13 @@ const base_path  = '',
           'node_modules/sal.js/dist/sal.css',
         ],
         js:   [
-          src + '/js/'   + theme_name + theme_suffix + '.js'
+          source + '/js/'   + theme_name + theme_suffix + '.js'
         ],
         sass: [
-          src + '/sass/' + theme_name + theme_suffix + '.scss'
+          source + '/sass/' + theme_name + theme_suffix + '.scss'
         ],
         sass_fonts: [
-          src + '/sass/' + theme_name + theme_suffix + '-fonts' + '.scss'
+          source + '/sass/' + theme_name + theme_suffix + '-fonts' + '.scss'
         ]
       };
 
@@ -52,145 +52,127 @@ const base_path  = '',
 // -------------
 
 // -- LOCAL SERVER --
-gulp.task('connect', () => {
+function connectServer() {
   connect.server({
     root: dist,
     livereload: true
   });
-});
+};
 
 // -- CLEAN  --
-gulp.task('clean', () => {
+function clean() {
   return del( dist + '/*' );
-});
+};
 
 // -- ASSETS --
-gulp.task('assets', () => {
-  return gulp.src( src + '/assets/**/**/**/*' )
-    .pipe( gulp.dest( dist + '/assets' ) );
-});
+function assets() {
+  return src( source + '/assets/**/**/**/*' )
+    .pipe( dest( dist + '/assets' ) );
+};
 
 // -- HTML    --
-gulp.task('html', () => {
-  return gulp.src( src + '/html/**/**/*' )
+function html() {
+  return src( source + '/html/**/**/*' )
     .pipe( htmlmin({
       collapseWhitespace: true
     }))
-    .pipe( gulp.dest( dist ) )
+    .pipe( dest( dist ) )
     .pipe( connect.reload() );
-});
+};
 
 // -- FONT AWESOME   --
-gulp.task('font-awesome', () => {
-  return gulp.src( 'node_modules/@fortawesome/fontawesome-free/webfonts/*' )
-    .pipe( gulp.dest( dist + '/assets/fonts/font-awesome/' ) );
-});
+function fontAwesome() {
+  return src( 'node_modules/@fortawesome/fontawesome-free/webfonts/*' )
+    .pipe( dest( dist + '/assets/fonts/font-awesome/' ) );
+};
 
 // -- JS     --
-gulp.task('js', () => {
-  return gulp.src( paths.js )
+function js() {
+  return src( paths.js )
     .pipe( concat( theme_name + theme_suffix + '.js' ) )
     .pipe(uglify())
-    .pipe( gulp.dest( dist + '/assets/js' ) )
+    .pipe( dest( dist + '/assets/js' ) )
     .pipe( connect.reload() );
-});
+};
 
 // -- SASS   --
-gulp.task('sass', () => {
-  return gulp.src( paths.sass )
+function sassStyles() {
+  return src( paths.sass )
     .pipe( sass())
-    .pipe( prefixer({
-      browsers: [
-        'last 2 versions',
-        '> 1%',
-        'opera 12.1',
-        'bb 10',
-        'android 4'
-        ]
-      }))
     .pipe( minifyCSS({
         level: {1: {specialComments: 0}}
       }))
     .pipe( rename( theme_name + theme_suffix + '.css' ) )
-    .pipe( gulp.dest( dist + '/assets/css' ) )
+    .pipe( dest( dist + '/assets/css' ) )
     .pipe( connect.reload() );
-});
+};
 
 // -- SASS FONTS   --
-gulp.task('sass-fonts', () => {
-  return gulp.src( paths.sass_fonts )
+function sassFonts() {
+  return src( paths.sass_fonts )
     .pipe( sass())
-    .pipe( prefixer({
-      browsers: [
-        'last 2 versions',
-        '> 1%',
-        'opera 12.1',
-        'bb 10',
-        'android 4'
-        ]
-      }))
     .pipe( minifyCSS({
         level: {1: {specialComments: 0}}
       }))
     .pipe( rename( theme_name + theme_suffix + '-fonts' + '.css' ) )
-    .pipe( gulp.dest( dist + '/assets/css' ) )
-});
+    .pipe( dest( dist + '/assets/css' ) )
+};
 
 
 // -- Vendor JS    --
-gulp.task('vendor-js', () => {
-  return gulp.src( paths.vendor_js )
+function vendorJs() {
+  return src( paths.vendor_js )
     .pipe( concat( theme_name + theme_suffix + '-vendor' + '.js' ) )
     .pipe( uglify())
-    .pipe( gulp.dest( dist + '/assets/js' ) );
-});
+    .pipe( dest( dist + '/assets/js' ) );
+};
 
 // -- Vendor JS AFrame
-gulp.task('vendor-aframe-js', () => {
-  return gulp.src([
+function vendorAframeJs() {
+  return src([
     'node_modules/aframe/dist/aframe-master.js'
   ])
    .pipe( concat( theme_name + theme_suffix + '-vendor-aframe' + '.js'))
    .pipe( uglify())
-   .pipe( gulp.dest( dist + '/assets/js'));
-});
+   .pipe( dest( dist + '/assets/js'));
+};
 
 // -- Vendor CSS   --
-gulp.task('vendor-css', () => {
-  return gulp.src( paths.vendor_css )
+function vendorCss() {
+  return src( paths.vendor_css )
     .pipe( concat( theme_name + theme_suffix + '-vendor' + '.css' ) )
     .pipe( minifyCSS({
       level: {1: {specialComments: 0}}
     }))
-    .pipe( gulp.dest( dist + '/assets/css' ) );
-});
+    .pipe( dest( dist + '/assets/css' ) );
+};
 
 
 // -- WATCH          --
-gulp.task('watch', () => {
-  gulp.watch( src + '/html/**/**/*', ['html'] );
-  gulp.watch( src + '/js/*',         ['js']);
-  gulp.watch( src + '/sass/*',       ['sass'] );
-});
+function watchFiles() {
+  watch( source + '/html/**/**/*', html       );
+  watch( source + '/js/*',         js         );
+  watch( source + '/sass/*',       sassStyles );
+};
 
 
 // ------------------------------
 // -- Project `default` Gulp Task
 // ------------------------------
 
-gulp.task(
-  'default', ['clean'], () => {
-    gulp.start(
-      'assets',
-      'font-awesome',
-      'html',
-      'js',
-      'sass',
-      'sass-fonts',
-      'vendor-js',
-      'vendor-aframe-js',
-      'vendor-css',
-      'connect',
-      'watch'
-    )
-  });
+exports.default = series(
+  clean,
+  assets,
+  fontAwesome,
+  html,
+  js,
+  sassStyles,
+  sassFonts,
+  vendorJs,
+  vendorAframeJs,
+  vendorCss,
+  parallel(
+    watchFiles,
+    connectServer,
+  ),
+);

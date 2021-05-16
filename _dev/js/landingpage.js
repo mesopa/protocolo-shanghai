@@ -5,7 +5,7 @@ player.on('play', function(event){
   $(this).addClass('plyr--init-play');
 });
 
-$(document).ready ( function(){
+$(function(){
   var videoPopUpTrigger = $('.js-video-popup');
 
   if ( videoPopUpTrigger ) {
